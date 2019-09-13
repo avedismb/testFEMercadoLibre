@@ -1,15 +1,33 @@
 import React from 'react'; 
 import { RouteComponentProps } from 'react-router-dom';
+import '../App.scss'
 
-class SearchBox extends React.Component<RouteComponentProps> {
+interface State {
+  search: string
+}
 
-  private onClickItem = () => {
-    this.props.history.push('/items?search=textoplano')
+class SearchBox extends React.Component<RouteComponentProps,State> {
+
+  public state: State = {
+    search: ''
   }
+
+  private onSearchItems = () => {
+    this.props.history.push('/items?search=' + this.state.search)
+  }
+
+  public onChangeSearch = (e: any) => this.setState({ search: e.currentTarget.value })
 
   public render(){
     return (
-      <div onClick={this.onClickItem}>This is the Search Box. If you click you will got to Item List Page </div>
+      <div className='main_header'> 
+        <div className='content'> 
+          <div className='box'> 
+            <input onChange={this.onChangeSearch} id='inputSearch' value={this.state.search} placeholder='Nunca dejes de buscar'/> 
+            <span onClick={this.onSearchItems} />
+        </div> 
+      </div> 
+    </div>
     )
   }
 

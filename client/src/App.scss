@@ -1,0 +1,35 @@
+// Colors
+$yellow: #FFEE60;
+$black: #333333;
+$grey: #999999;
+$darkGrey: #FFEE60;
+$lightGrey: #EEEEEE;
+$blue: #3483FA;
+
+// Margins
+$margin16: 16px;
+$margin32: 32px;
+
+// Fonts 
+$size12: 12px;
+$size14: 14px;
+$size16: 16px;
+$size18: 18px;
+$size24: 24px;
+$size28: 28px;
+$size46: 46px;
+$blue: #3483FA;
+
+// Images
+$imageSizeSmall: 180px;
+$imageSizeBig: 680px;
+
+body{ margin: 0; padding: 0}
+
+.main_header { background-color: #FFE600; height: 50px }
+.main_header .content { align-items:center; display: flex; margin: 0 10%; height: 50px }
+.main_header .content .box { width: 100% }
+.main_header .content .box span { cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 30px; background: url("./assets/SearchIcon.png")  no-repeat center; background-size: 20px 20px; }
+.main_header .content .box::before { margin: 0px 15px; float: left; content: ""; display: block; width: 40px; height: 30px; background: url("./assets/MLIcon.png"); background-size: 40px 30px;}
+.main_header .content .box input{ width: calc(100% - 110px); padding: 5px; font-size: 18px; background-color: white; border: none }
+.main_header .content .box input:focus { outline: none }
