@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import SearchBox from './SearchBox';
+import { Categories }  from './Categories';
 
 interface Params {
   search: string
@@ -18,8 +19,8 @@ class ItemListPage extends React.Component<RouteComponentProps<Params>> {
   }
 
   public render(){
-    const list = ['Electronica, audio y video','iPod','Reproductorees','32GB']
-    const categories = list.slice(0,list.length-1).join('  >  ') + '  >  ' 
+    const categories = ['Electronica, audio y video','iPod','Reproductorees','32GB']
+    // const categories = list.slice(0,list.length-1).join('  >  ') + '  >  ' 
     const item = {
       price: 1980,
       location: 'Capital Federal',
@@ -31,10 +32,10 @@ class ItemListPage extends React.Component<RouteComponentProps<Params>> {
       <div>
           <SearchBox />
           <div className='main_items_list_page'>
-            <div className='categories'>{categories}<span>{list.pop()}</span></div>
+            <Categories categories={categories}/>
             <div className='items'>
             {items.map((x,idx)=> {
-              return <div key={idx} className='item'> 
+              return <div key={idx} className='container_item'> 
                   <div className='left'>
                     <img alt='' src={x.imageUrl} />
                   </div>
