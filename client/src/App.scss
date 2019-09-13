@@ -24,12 +24,30 @@ $blue: #3483FA;
 $imageSizeSmall: 180px;
 $imageSizeBig: 680px;
 
-body{ margin: 0; padding: 0}
+body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
 
 .main_header { background-color: #FFE600; height: 50px }
 .main_header .content { align-items:center; display: flex; margin: 0 10%; height: 50px }
 .main_header .content .box { width: 100% }
-.main_header .content .box span { cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 30px; background: url("./assets/SearchIcon.png")  no-repeat center; background-size: 20px 20px; }
-.main_header .content .box::before { margin: 0px 15px; float: left; content: ""; display: block; width: 40px; height: 30px; background: url("./assets/MLIcon.png"); background-size: 40px 30px;}
-.main_header .content .box input{ width: calc(100% - 110px); padding: 5px; font-size: 18px; background-color: white; border: none }
-.main_header .content .box input:focus { outline: none }
+.main_header .content .box span{ cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 30px; background: url("./assets/SearchIcon.png")  no-repeat center; background-size: 20px 20px; }
+.main_header .content .box::before { margin-right: 10px; float: left; content: ""; display: block; width: 40px; height: 30px; background: url("./assets/MLIcon.png"); background-size: 40px 30px;}
+.main_header .content .box input{ width: calc(100% - 90px); padding: 5px; font-size: 18px; background-color: white; border: none };
+.main_header .content .box input:focus { outline: none };
+
+
+
+
+.main_items_list_page {  margin: 0 10% };
+.main_items_list_page .categories { margin: $margin16 0; font-size: $size14 };
+.main_items_list_page .categories span { font-weight: bold };
+.main_items_list_page .items { background-color: darkgray; border-radius: 10px };
+.main_items_list_page .items .item { display: flex };
+.main_items_list_page .items .item .left { float: left };
+.main_items_list_page .items .item .right { width: 100% };
+.main_items_list_page .items .item .left img { width: $imageSizeSmall; height: $imageSizeSmall; padding: $margin16 };
+.main_items_list_page .items .item .header_info { display: flex; margin-top: 22px; justify-content: space-between }
+.main_items_list_page .items .item .header_info .price { font-size: $size24; margin-bottom: $margin32 }
+.main_items_list_page .items .item .header_info .price span{ margin-top: 3px; margin-left: 10px; float: right;  background: url("./assets/ShippingIcon.png"); width: 20px; height: 20px; background-size: 20px 20px; content: ""; display: block }
+.main_items_list_page .items .item .header_info .location { font-size: $size12; float: right; margin-top: 6px; padding-right: 100px }
+.main_items_list_page .items .item .description { font-size: $size18 }
+

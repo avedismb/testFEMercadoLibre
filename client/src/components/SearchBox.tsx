@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import '../App.scss'
 
 interface State {
@@ -32,4 +32,4 @@ class SearchBox extends React.Component<RouteComponentProps,State> {
   }
 
 }
-export default SearchBox
+export default withRouter(SearchBox)
