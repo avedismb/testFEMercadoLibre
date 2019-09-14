@@ -13,7 +13,10 @@ class SearchBox extends React.Component<RouteComponentProps,State> {
   }
 
   private onSearchItems = () => {
-    this.props.history.push('/items?search=' + this.state.search)
+    if(this.state.search.length > 0){
+      console.log('va')
+      this.props.history.push('/items?search=' + this.state.search)
+    }
   }
 
   public onChangeSearch = (e: any) => this.setState({ search: e.currentTarget.value })

@@ -4,7 +4,7 @@ import { getCategories, getItem as getItemHandler } from '../handlers/itemsHandl
 import { getItemsResponse, getItemDetailResponse } from '../utils/types'
 
 export const getItems = (req: any,res: any) => {
-  const search = req.query.search
+  const search = req.query.q
   const url = ML_SEARCH_ITEMS + search
   return fetch(url) 
   .then(response => response.json()) 

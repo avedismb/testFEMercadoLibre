@@ -2,54 +2,55 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import SearchBox from './SearchBox';
 import { Categories }  from './Categories';
+import { ItemRow }  from './ItemRow';
 
 interface Params {
   search: string
 }
 
-class ItemListPage extends React.Component<RouteComponentProps<Params>> {
+interface State {
+  itemsResponse: any
+}
 
-  private onClickItem = () => {
-    this.props.history.push('/items/3')
+class ItemListPage extends React.Component<RouteComponentProps<Params>,State> {
+
+  public state: State = {
+    itemsResponse: ''
+  }
+
+  private goToItemDetail = (id: string) => () => this.props.history.push('/items/'+id)
+
+  private getItems = () => {
+    const params = new URLSearchParams(this.props.location.search); 
+    fetch('http://localhost:8000/api/items?q='+ params.get('search'), 
+      { method: 'get', 
+      headers: new Headers({ 
+        'Content-Type': 'application/json', 
+        "Access-Control-Allow-Origin" : "*", }), 
+      }) 
+      .then(response => response.json()) 
+      .then(itemsResponse => { 
+        this.setState({ itemsResponse }) 
+      });
   }
 
   public componentWillMount (){
-    const params = new URLSearchParams(this.props.location.search); 
-    console.log(params.get('search'))
+    this.getItems()
   }
 
   public render(){
-    const categories = ['Electronica, audio y video','iPod','Reproductorees','32GB']
-    // const categories = list.slice(0,list.length-1).join('  >  ') + '  >  ' 
-    const item = {
-      price: 1980,
-      location: 'Capital Federal',
-      description: 'Apple Ipod Touch 5g 15gb Negro Igual a Nuevo',
-      imageUrl: 'https://www.vbout.com/images/persona/buyer-persona-image1.png'
-    }
-    const items = [item,item,item,item]
+    const { itemsResponse } = this.state
     return (
       <div>
           <SearchBox />
-          <div className='main_items_list_page'>
-            <Categories categories={categories}/>
+          {itemsResponse !== '' && <div className='main_items_list_page'>
+            <Categories categories={itemsResponse.categories}/>
             <div className='items'>
-            {items.map((x,idx)=> {
-              return <div key={idx} className='container_item'> 
-                  <div className='left'>
-                    <img alt='' src={x.imageUrl} />
-                  </div>
-                  <div className='right'>
-                    <div className='header_info'>
-                      <div className='price'>$ {x.price} <span /></div>
-                      <div className='location'>{x.location} </div>
-                    </div>
-                    <div className='description'>{x.description}</div>
-                  </div>
-              </div>
+            {itemsResponse.items.map((item: any,idx: number)=> {
+              return <ItemRow item={item} onClick={this.goToItemDetail(item.id)}/>
             })}
             </div>
-          </div>
+          </div>}
       </div>
     )
   }

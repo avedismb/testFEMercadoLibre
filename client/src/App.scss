@@ -2,7 +2,7 @@
 $yellow: #FFEE60;
 $black: #333333;
 $grey: #999999;
-$darkGrey: #FFEE60;
+$darkGrey: #666666;
 $lightGrey: #EEEEEE;
 $blue: #3483FA;
 
@@ -31,7 +31,7 @@ body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
 .main_header { background-color: #FFE600; height: 50px }
 .main_header .content { align-items:center; display: flex; margin: 0 10%; height: 50px }
 .main_header .content .box { width: 100% }
-.main_header .content .box span{ cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 30px; background: url("./assets/SearchIcon.png")  no-repeat center; background-size: 20px 20px; }
+.main_header .content .box span{ cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 30px; background: $lightGrey url("./assets/SearchIcon.png")  no-repeat center; background-size: 20px 20px; }
 .main_header .content .box::before { margin-right: 10px; float: left; content: ""; display: block; width: 40px; height: 30px; background: url("./assets/MLIcon.png"); background-size: 40px 30px;}
 .main_header .content .box input{ width: calc(100% - 90px); padding: 5px; font-size: 18px; background-color: white; border: none };
 .main_header .content .box input:focus { outline: none };
@@ -42,8 +42,8 @@ body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
 .main_items_list_page {  margin: 0 10% };
 .main_items_list_page .categories { margin: $margin16 0; font-size: $size14 };
 .main_items_list_page .categories span { font-weight: bold };
-.main_items_list_page .items { background-color: darkgray; border-radius: 10px };
-.main_items_list_page .items .container_item { display: flex };
+.main_items_list_page .items { background-color: white; border-radius: 10px };
+.main_items_list_page .items .container_item { display: flex; cursor: pointer };
 .main_items_list_page .items .container_item .left { float: left };
 .main_items_list_page .items .container_item .right { width: 100% };
 .main_items_list_page .items .container_item .left img { width: $imageSizeSmall; height: $imageSizeSmall; padding: $margin16 };
@@ -58,12 +58,12 @@ body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
 .main_item_page {  margin: 0 10% };
 .main_item_page .categories { margin: $margin16 0; font-size: $size14 };
 .main_item_page .categories span { font-weight: bold };
-.main_item_page .container_item { background-color: darkgray; border-radius: 10px; display: flex };
-.main_item_page .container_item .left { display: flex; flex-direction: column }
+.main_item_page .container_item { background-color: white; border-radius: 10px; display: flex };
+.main_item_page .container_item .left { display: flex; flex-direction: column; width: 50% }
 .main_item_page .container_item .left img { width: $imageSizeBig; height: $imageSizeBig; };
 .main_item_page .container_item .left .description { margin-left: $margin32  };
 .main_item_page .container_item .left .description h1 { font-size: $size28; color: $black };
-.main_item_page .container_item .left .description p { margin: $margin32 0; font-size: $size16; color: $lightGrey };
+.main_item_page .container_item .left .description p { margin: $margin32 0; font-size: $size16; color: $darkGrey };
 .main_item_page .container_item .right { margin-top: $margin32; display: flex; flex-direction: column; width: 100%  }
 .main_item_page .container_item .right .sold { font-size: $size14; }
 .main_item_page .container_item .right .description { font-size: $size24; margin-top: $margin16}

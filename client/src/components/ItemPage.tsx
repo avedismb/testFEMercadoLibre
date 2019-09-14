@@ -7,34 +7,54 @@ interface Params {
   id: string
 }
 
-class ItemPage extends React.Component<RouteComponentProps<Params>> {
+interface State {
+  itemResponse: any
+}
+
+class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
+
+
+  public state: State = {
+    itemResponse: ''
+  }
 
   public componentWillMount (){
-    //console.log(this.props.match.params.id)
+    const id = this.props.match.params.id
+    fetch('http://localhost:8000/api/items/'+ id, 
+      { method: 'get', 
+      headers: new Headers({ 
+        'Content-Type': 'application/json', 
+        "Access-Control-Allow-Origin" : "*", }), 
+      }) 
+      .then(response => response.json()) 
+      .then(itemResponse => { 
+        this.setState({ itemResponse }) 
+      });
   }
 
   public render(){
     const categories = ['Electronica, audio y video','iPod','Reproductorees','32GB']
+    const { itemResponse } = this.state
     return (
       <div>
         <SearchBox />
         <div className='main_item_page'>
           <Categories categories={categories}/>
-          <div className='container_item'>
+          {itemResponse!== ''&& <div className='container_item'>
             <div className='left' >
-              <img alt='' src={'https://www.vbout.com/images/persona/buyer-persona-image1.png'} />
+              <img alt='' src={itemResponse.picture} />
               <div className='description'>
-                <h1>Titulpo</h1>
-                <p>Aca va una descripcion</p>
+                <h1>Descripción del Producto</h1>
+                <p>{itemResponse.description}</p>
               </div>
             </div>
             <div className='right' >
-              <div className='sold'>Nuefo 234 vendidos</div>
-              <div className='description'>Deco Reverse Sombrero Ofxord</div>
-              <div className='price'>$ 1980 </div>
+              <div className='sold'>{`Nuevo ${itemResponse.sold_quantity} vendidos`}</div>
+              <div className='description'>{itemResponse.title}</div>
+              <div className='price'>$ {itemResponse.price.amount} </div>
               <button>Comprar</button>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     )
