@@ -4,7 +4,17 @@ export type Item = {
   picture: string 
   condition: string 
   free_shipping: boolean 
-  price: Price}
+  price: Price
+}
+
+export interface ItemDetail extends Item {
+  sold_quantity: string
+  description: string
+}
+
+export interface ItemDetailList extends Item {
+  state_name: string
+}
 
 export type Price = { 
   currency: string 
@@ -20,5 +30,7 @@ export type Author = {
 export type getItemsResponse = { 
   author: Author 
   categories: string[] 
-  items: Item[]
+  items: ItemDetailList[]
 }
+
+export type getItemDetailResponse = ItemDetail

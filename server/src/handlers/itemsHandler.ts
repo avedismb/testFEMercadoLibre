@@ -1,4 +1,4 @@
-import { Price, Item } from "../utils/types"
+import { Price, Item, ItemDetail, ItemDetailList } from "../utils/types"
 
 export const getCategories =(filters: any) => { 
   const categoryIdItem: any[] = filters.filter((x:any)=>x.id === 'category') 
@@ -20,9 +20,10 @@ export const getCategories =(filters: any) => {
   return categories
 }
 
-export const getItem = (item: any) => { 
-  const { id, title, condition, shipping, price, currency_id, thumbnail, sold_quantity } = item 
-  return { 
+export const getItem = (item: any, onListPage: boolean) => { 
+  const { id, title, condition, shipping, price, currency_id, thumbnail, sold_quantity, address } = item 
+  console.log(id)
+  const itemReturn: Item = {
     id, 
     title, 
     condition, 
@@ -34,4 +35,18 @@ export const getItem = (item: any) => {
       decimals: 0 
     } as Price 
   } as Item
+  if(onListPage){
+    const aux: ItemDetailList = {
+      ...itemReturn,
+      state_name: address.state_name
+    }
+    return aux
+  }else{
+    const aux: ItemDetail = {
+      ...itemReturn,
+      description: '',
+      sold_quantity
+    }
+    return aux
+  }
 }
