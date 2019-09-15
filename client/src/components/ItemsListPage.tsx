@@ -8,11 +8,13 @@ interface Params {
   search: string
 }
 
+interface Props extends RouteComponentProps<Params> {}
+
 interface State {
   itemsResponse: any
 }
 
-class ItemListPage extends React.Component<RouteComponentProps<Params>,State> {
+class ItemListPage extends React.Component<Props,State> {
 
   public state: State = {
     itemsResponse: ''
@@ -38,6 +40,21 @@ class ItemListPage extends React.Component<RouteComponentProps<Params>,State> {
     this.getItems()
   }
 
+  public componentDidUpdate (oldProps: Props){
+    const props = this.props
+    if(props.location.search !== oldProps.location.search){
+      this.getItems()
+    }
+  }
+
+  public componentWillUpdate (){
+    console.log('ÇWU')
+  }
+
+  public componentDidCatch (){
+    console.log('ÇDC')
+  }
+
   public render(){
     const { itemsResponse } = this.state
     return (
@@ -47,7 +64,7 @@ class ItemListPage extends React.Component<RouteComponentProps<Params>,State> {
             <Categories categories={itemsResponse.categories}/>
             <div className='items'>
             {itemsResponse.items.map((item: any,idx: number)=> {
-              return <ItemRow item={item} onClick={this.goToItemDetail(item.id)}/>
+              return <ItemRow key={item.id} item={item} onClick={this.goToItemDetail(item.id)}/>
             })}
             </div>
           </div>}

@@ -14,8 +14,14 @@ class SearchBox extends React.Component<RouteComponentProps,State> {
 
   private onSearchItems = () => {
     if(this.state.search.length > 0){
-      console.log('va')
       this.props.history.push('/items?search=' + this.state.search)
+    }
+  }
+
+  private _handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      console.log('ásdasdasasd')
+      this.onSearchItems();
     }
   }
 
@@ -26,7 +32,7 @@ class SearchBox extends React.Component<RouteComponentProps,State> {
       <div className='main_header'> 
         <div className='content'> 
           <div className='box'> 
-            <input onChange={this.onChangeSearch} id='inputSearch' value={this.state.search} placeholder='Nunca dejes de buscar'/> 
+            <input onKeyDown={this._handleKeyDown} onChange={this.onChangeSearch} value={this.state.search} placeholder='Nunca dejes de buscar'/> 
             <span onClick={this.onSearchItems} />
         </div> 
       </div> 

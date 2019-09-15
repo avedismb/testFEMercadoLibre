@@ -19,6 +19,7 @@ class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
   }
 
   public componentWillMount (){
+    console.log('ÇWM')
     const id = this.props.match.params.id
     fetch('http://localhost:8000/api/items/'+ id, 
       { method: 'get', 
@@ -49,9 +50,9 @@ class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
               </div>
             </div>
             <div className='right' >
-              <div className='sold'>{`Nuevo ${itemResponse.sold_quantity} vendidos`}</div>
+              <div className='sold'>{`Nuevo - ${itemResponse.sold_quantity} vendidos`}</div>
               <div className='description'>{itemResponse.title}</div>
-              <div className='price'>$ {itemResponse.price.amount} </div>
+              <div className='price'>$ {itemResponse.price.amount}<span>{itemResponse.price.decimals === 0 ? '00' : itemResponse.price.decimals < 10 ? '0'+itemResponse.price.decimals : itemResponse.price.decimals}</span> </div>
               <button>Comprar</button>
             </div>
           </div>}

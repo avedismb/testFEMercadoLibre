@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const ItemRow: React.SFC<Props> = props => {
-  const { id, picture, price, title, state_name } = props.item
+  const { id, picture, price, title, state_name, free_shipping } = props.item
   const { amount } = price
 
   const onClick = () => props.onClick(id)
@@ -17,7 +17,7 @@ export const ItemRow: React.SFC<Props> = props => {
       </div>
       <div className='right'>
         <div className='header_info'>
-          <div className='price'>$ {amount} <span /></div>
+          <div className='price'>$ {amount}{free_shipping &&< span /> }</div>
           <div className='location'>{state_name} </div>
         </div>
         <div className='description'>{title}</div>

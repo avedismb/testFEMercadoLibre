@@ -21,30 +21,33 @@ export const getCategories =(filters: any) => {
 }
 
 export const getItem = (item: any, onListPage: boolean) => { 
-  const { id, title, condition, shipping, price, currency_id, thumbnail, sold_quantity, address } = item 
-  console.log(id)
+  const { id, title, condition, shipping, price, currency_id, thumbnail, sold_quantity, address, pictures } = item 
+  const amount = price.toString().split('.')[0]
+  const decimals = price.toString().split('.').length > 1 ? price.toString().split('.')[1] : 0
   const itemReturn: Item = {
     id, 
     title, 
     condition, 
     free_shipping: shipping.free_shipping, 
-    picture: thumbnail, sold_quantity, 
     price: { 
       currency: currency_id, 
-      amount: price, 
-      decimals: 0 
+      amount, 
+      decimals
     } as Price 
   } as Item
   if(onListPage){
     const aux: ItemDetailList = {
       ...itemReturn,
+      picture: thumbnail, 
       state_name: address.state_name
     }
     return aux
   }else{
+    console.log(pictures[0])
     const aux: ItemDetail = {
       ...itemReturn,
       description: '',
+      picture: pictures[0].secure_url,
       sold_quantity
     }
     return aux
