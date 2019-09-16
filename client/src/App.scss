@@ -1,0 +1,71 @@
+// Colors
+$yellow: #FFEE60;
+$black: #333333;
+$grey: #999999;
+$darkGrey: #666666;
+$lightGrey: #EEEEEE;
+$blue: #3483FA;
+
+// Margins
+$margin16: 16px;
+$margin32: 32px;
+
+// Fonts 
+$size12: 12px;
+$size14: 14px;
+$size16: 16px;
+$size18: 18px;
+$size24: 24px;
+$size28: 28px;
+$size46: 46px;
+$blue: #3483FA;
+
+// Images
+$imageSizeSmall: 180px;
+$imageSizeBig: 680px;
+
+body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
+
+// SEARCH BOX
+.main_header { background-color: #FFE600; height: 50px }
+.main_header .content { align-items:center; display: flex; margin: 0 10%; height: 50px }
+.main_header .content .box { width: 100% }
+.main_header .content .box span{ cursor: pointer; float: right; background-color: blue; float: right; content: ""; display: block; width: 30px; height: 31px; background: $lightGrey url("./assets/SearchIcon.png")  no-repeat center; background-size: 15px 15px; }
+.main_header .content .box::before { margin-right: 10px; float: left; content: ""; display: block; width: 40px; height: 30px; background: url("./assets/MLIcon.png"); background-size: 40px 30px;}
+.main_header .content .box input{ width: calc(100% - 90px); padding: 5px; font-size: 18px; background-color: white; border: none };
+.main_header .content .box input:focus { outline: none };
+
+
+
+// ITEM LIST PAGE
+.main_items_list_page {  margin: 0 10% };
+.main_items_list_page .items { background-color: white; border-radius: 10px; margin-bottom: 30px };
+.main_items_list_page .items .container_item { display: flex; cursor: pointer };
+.main_items_list_page .items .container_item .left { float: left };
+.main_items_list_page .items .container_item .right { width: 100% };
+.main_items_list_page .items .container_item .left img { width: $imageSizeSmall; height: $imageSizeSmall; padding: $margin16; border-top-left-radius: 4 };
+.main_items_list_page .items .container_item .header_info { display: flex; margin-top: 22px; justify-content: space-between }
+.main_items_list_page .items .container_item .header_info .price { font-size: $size24; margin-bottom: $margin32 }
+.main_items_list_page .items .container_item .header_info .price span{ margin-top: 3px; margin-left: 10px; float: right;  background: url("./assets/ShippingIcon.png"); width: 20px; height: 20px; background-size: 20px 20px; content: ""; display: block }
+.main_items_list_page .items .container_item .header_info .location { font-size: $size12; float: right; margin-top: 6px; width: 20% }
+.main_items_list_page .items .container_item .description { font-size: $size18 }
+
+
+// ITEM PAGE 
+.main_item_page { margin: 0 10% };
+.main_item_page .container_item { background-color: white; border-radius: 10px; display: flex; margin-bottom: 30px };
+.main_item_page .container_item .left { display: flex; flex-direction: column; width: 680px }
+.main_item_page .container_item .left img { width: $imageSizeBig; height: $imageSizeBig; };
+.main_item_page .container_item .left .description { margin-left: $margin32  };
+.main_item_page .container_item .left .description h1 { font-size: $size28; color: $black };
+.main_item_page .container_item .left .description p { margin: $margin32 0; font-size: $size16; color: $darkGrey };
+.main_item_page .container_item .right { margin-top: $margin32; display: flex; flex-direction: column; margin-left: 20px };
+.main_item_page .container_item .right .sold { font-size: $size14; }
+.main_item_page .container_item .right .description { font-size: $size24; margin-top: $margin16; margin-right: $margin16 }
+.main_item_page .container_item .right .price { font-size: $size46; margin: $margin32 0} 
+.main_item_page .container_item .right .price span { position: relative; bottom: 17px; font-size: 20px}
+.main_item_page .container_item .right button { font-size: 25px; height: 50px; background-color: $blue; color: white; border-radius: 10px; border: none; margin-right: $margin32; max-width: 300px; width: auto; cursor: pointer;}
+
+// CATEGORIES
+.categories { margin: $margin16 0; font-size: $size14 };
+.categories span { font-weight: bold };
