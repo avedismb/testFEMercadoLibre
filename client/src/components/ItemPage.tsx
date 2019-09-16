@@ -9,17 +9,18 @@ interface Params {
 
 interface State {
   itemResponse: any
+  categories: string[]
 }
 
 class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
 
 
   public state: State = {
-    itemResponse: ''
+    itemResponse: '',
+    categories: []
   }
 
   public componentWillMount (){
-    console.log('ÇWM')
     const id = this.props.match.params.id
     fetch('http://localhost:8000/api/items/'+ id, 
       { method: 'get', 
@@ -33,9 +34,13 @@ class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
       });
   }
 
+  public componentDidMount(){
+    const categories = (this.props.location && this.props.location.state && this.props.location.state.categories)? this.props.location.state.categories : []
+    this.setState({ categories })
+  }
+
   public render(){
-    const categories = ['Electronica, audio y video','iPod','Reproductorees','32GB']
-    const { itemResponse } = this.state
+    const { itemResponse, categories } = this.state
     return (
       <div>
         <SearchBox />
@@ -52,7 +57,7 @@ class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
             <div className='right' >
               <div className='sold'>{`Nuevo - ${itemResponse.sold_quantity} vendidos`}</div>
               <div className='description'>{itemResponse.title}</div>
-              <div className='price'>$ {itemResponse.price.amount}<span>{itemResponse.price.decimals === 0 ? '00' : itemResponse.price.decimals < 10 ? '0'+itemResponse.price.decimals : itemResponse.price.decimals}</span> </div>
+              <div className='price'>$ {itemResponse.price.amount.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')}<span>{itemResponse.price.decimals === 0 ? '00' : itemResponse.price.decimals < 10 ? '0'+itemResponse.price.decimals : itemResponse.price.decimals}</span> </div>
               <button>Comprar</button>
             </div>
           </div>}

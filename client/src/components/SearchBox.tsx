@@ -20,7 +20,6 @@ class SearchBox extends React.Component<RouteComponentProps,State> {
 
   private _handleKeyDown = (e: any) => {
     if (e.key === 'Enter') {
-      console.log('ásdasdasasd')
       this.onSearchItems();
     }
   }

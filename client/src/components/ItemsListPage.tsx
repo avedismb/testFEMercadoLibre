@@ -20,7 +20,14 @@ class ItemListPage extends React.Component<Props,State> {
     itemsResponse: ''
   }
 
-  private goToItemDetail = (id: string) => () => this.props.history.push('/items/'+id)
+  private goToItemDetail = (id: string, categories: string[]) => () => {
+    this.props.history.push({
+      pathname: '/items/'+id,
+      state: {
+        categories
+      }
+    })
+  }
 
   private getItems = () => {
     const params = new URLSearchParams(this.props.location.search); 
@@ -33,7 +40,7 @@ class ItemListPage extends React.Component<Props,State> {
       .then(response => response.json()) 
       .then(itemsResponse => { 
         this.setState({ itemsResponse }) 
-      });
+      })
   }
 
   public componentWillMount (){
@@ -47,14 +54,6 @@ class ItemListPage extends React.Component<Props,State> {
     }
   }
 
-  public componentWillUpdate (){
-    console.log('ÇWU')
-  }
-
-  public componentDidCatch (){
-    console.log('ÇDC')
-  }
-
   public render(){
     const { itemsResponse } = this.state
     return (
@@ -63,8 +62,8 @@ class ItemListPage extends React.Component<Props,State> {
           {itemsResponse !== '' && <div className='main_items_list_page'>
             <Categories categories={itemsResponse.categories}/>
             <div className='items'>
-            {itemsResponse.items.map((item: any,idx: number)=> {
-              return <ItemRow key={item.id} item={item} onClick={this.goToItemDetail(item.id)}/>
+            {itemsResponse.items.map((item: any)=> {
+              return <ItemRow key={item.id} item={item} onClick={this.goToItemDetail(item.id,itemsResponse.categories)}/>
             })}
             </div>
           </div>}

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { ML_SEARCH_ITEMS, author, ML_GET_ITEM } from '../utils/constants'
+import { ML_SEARCH_ITEMS, author } from '../utils/constants'
 import { getCategories, getItem as getItemHandler } from '../handlers/itemsHandler'
 import { getItemsResponse, getItemDetailResponse } from '../utils/types'
 
@@ -17,7 +17,6 @@ export const getItems = (req: any,res: any) => {
     return res.send(response)
   })
   .catch(error => { 
-    console.log(error)
     return res.send(error) 
   })
 }
@@ -25,12 +24,14 @@ export const getItems = (req: any,res: any) => {
 
 export const getItem = (req: any,res: any) => {
   const id = req.params.id
+  const url = 'https://api.mercadolibre.com/items/'
+  const finalUrl = url + id
   var item: any  = {}
-  return fetch('https://api.mercadolibre.com/items/'+id) 
+  return fetch(finalUrl) 
   .then(response => response.json()) 
   .then(result=>{ 
     item = getItemHandler(result,false) 
-    return fetch('https://api.mercadolibre.com/items/'+id+ '/description')
+    return fetch(url + id + '/description')
   }) 
   .then(response => response.json()) 
   .then(result=>{ 

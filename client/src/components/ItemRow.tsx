@@ -17,7 +17,7 @@ export const ItemRow: React.SFC<Props> = props => {
       </div>
       <div className='right'>
         <div className='header_info'>
-          <div className='price'>$ {amount}{free_shipping &&< span /> }</div>
+          <div className='price'>$ {amount.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')}{free_shipping && < span /> }</div>
           <div className='location'>{state_name} </div>
         </div>
         <div className='description'>{title}</div>
