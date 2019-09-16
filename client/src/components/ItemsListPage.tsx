@@ -20,11 +20,11 @@ class ItemListPage extends React.Component<Props,State> {
     itemsResponse: ''
   }
 
-  private goToItemDetail = (id: string, categories: string[]) => () => {
+  private goToItemDetail = (id: string) => {
     this.props.history.push({
       pathname: '/items/'+id,
       state: {
-        categories
+        categories: this.state.itemsResponse.categories
       }
     })
   }
@@ -57,13 +57,13 @@ class ItemListPage extends React.Component<Props,State> {
   public render(){
     const { itemsResponse } = this.state
     return (
-      <div>
+      <div >
           <SearchBox />
           {itemsResponse !== '' && <div className='main_items_list_page'>
             <Categories categories={itemsResponse.categories}/>
             <div className='items'>
             {itemsResponse.items.map((item: any)=> {
-              return <ItemRow key={item.id} item={item} onClick={this.goToItemDetail(item.id,itemsResponse.categories)}/>
+              return <ItemRow key={item.id} item={item} onClick={this.goToItemDetail}/>
             })}
             </div>
           </div>}

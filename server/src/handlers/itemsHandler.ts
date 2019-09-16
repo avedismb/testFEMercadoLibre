@@ -17,7 +17,6 @@ export const getCategories =(filters: any) => {
   } 
   
   const categories: string[] = values.path_from_root.map((x:any)=>x.name) 
-  console.log(categories)
   return categories
 }
 

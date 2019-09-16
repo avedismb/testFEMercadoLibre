@@ -30,15 +30,11 @@ class ItemPage extends React.Component<RouteComponentProps<Params>,State> {
       }) 
       .then(response => response.json()) 
       .then(itemResponse => { 
-        this.setState({ itemResponse }) 
+        
+        const categories = (this.props.location && this.props.location.state && this.props.location.state.categories)? this.props.location.state.categories : []
+        this.setState({ itemResponse,categories }) 
       });
   }
-
-  public componentDidMount(){
-    const categories = (this.props.location && this.props.location.state && this.props.location.state.categories)? this.props.location.state.categories : []
-    this.setState({ categories })
-  }
-
   public render(){
     const { itemResponse, categories } = this.state
     return (

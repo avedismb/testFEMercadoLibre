@@ -64,7 +64,7 @@ body{ margin: 0; padding: 0; min-height: 100%; background-color: $lightGrey}
 .main_item_page .container_item .right .description { font-size: $size24; margin-top: $margin16; margin-right: $margin16 }
 .main_item_page .container_item .right .price { font-size: $size46; margin: $margin32 0} 
 .main_item_page .container_item .right .price span { position: relative; bottom: 17px; font-size: 20px}
-.main_item_page .container_item .right button { font-size: 25px; height: 50px; background-color: $blue; color: white; border-radius: 10px; border: none; margin-right: $margin32; max-width: 300px; width: auto}
+.main_item_page .container_item .right button { font-size: 25px; height: 50px; background-color: $blue; color: white; border-radius: 10px; border: none; margin-right: $margin32; max-width: 300px; width: auto; cursor: pointer;}
 
 // CATEGORIES
 .categories { margin: $margin16 0; font-size: $size14 };
